@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { StyledList } from "./List.styled";
+import { StyledList, TextStyled } from "./List.styled";
 
 const List = ({ items }) => {
   return (
@@ -10,7 +10,7 @@ const List = ({ items }) => {
             <Link to={`/${item.id}`}>
               <img src={item.image} alt={item.name} />
               <div>
-                <h3>{item.name}</h3>
+                <TextStyled text={item.name} length={18}></TextStyled>
                 <p>{item.species}</p>
               </div>
             </Link>

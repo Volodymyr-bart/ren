@@ -1,3 +1,4 @@
+import EllipsisText from "react-ellipsis-text";
 import styled from "styled-components";
 
 export const StyledList = styled.ul`
@@ -27,12 +28,17 @@ export const StyledList = styled.ul`
         flex-direction: column;
         gap: 12px;
 
-        h3 {
+        /* h3 {
+          background-color: #bd2020;
           font-size: 20px;
           line-height: 30px;
           letter-spacing: 0.15px;
           color: rgba(0, 0, 0, 0.87);
-        }
+
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        } */
 
         p {
           font-weight: 400;
@@ -62,4 +68,11 @@ export const StyledList = styled.ul`
     grid-template-columns: repeat(4, 240px);
     column-gap: 20px;
   }
+`;
+
+export const TextStyled = styled(EllipsisText)`
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
 `;
