@@ -61,7 +61,7 @@ export const StyledList = styled.ul`
     }
   }
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(3, 220px);
+    grid-template-columns: repeat(3, 226px);
     column-gap: 20px;
   }
   @media screen and (min-width: 1200px) {
