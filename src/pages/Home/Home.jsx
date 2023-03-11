@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import List from "../../components/List/List";
 import Logo from "../../components/Logo/Logo";
@@ -15,6 +15,7 @@ const Home = () => {
   const [errors, setErrors] = useState(false);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   let visibleItems = [];
+  const prevSearchRef = useRef(null);
   if (items) {
     visibleItems = items
       .filter((item) => item.name.toLowerCase().includes(search.trim().toLowerCase()))
@@ -23,6 +24,11 @@ const Home = () => {
 
   useEffect(() => {
     setErrors(false);
+    if (prevSearchRef.current !== null && prevSearchRef.current !== search) {
+      setCurrentPage(1);
+    }
+    prevSearchRef.current = search;
+
     const templatePage = `${currentPage ? `page=${currentPage}` : ""}`;
     const templateName = `${search ? `name=${search}` : ""}`;
     const symbol = templatePage || templateName ? "?" : "";

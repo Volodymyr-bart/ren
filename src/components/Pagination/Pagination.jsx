@@ -10,7 +10,7 @@ const Pagination = ({ pages, paginate, currentPage }) => {
 
   return (
     <>
-      {pages ? (
+      {!!pages && (
         <PaginationList>
           {pageNumbers.map((number) => (
             <Item
@@ -21,8 +21,6 @@ const Pagination = ({ pages, paginate, currentPage }) => {
             </Item>
           ))}
         </PaginationList>
-      ) : (
-        <></>
       )}
     </>
   );

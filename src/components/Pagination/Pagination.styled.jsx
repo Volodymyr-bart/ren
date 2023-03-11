@@ -21,4 +21,10 @@ export const Item = styled.li`
   background-color: ${(p) => {
     return p.active ? "red" : " #8E8E93;";
   }};
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: red;
+  }
 `;

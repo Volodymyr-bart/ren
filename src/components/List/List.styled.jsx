@@ -38,6 +38,11 @@ export const StyledList = styled.ul`
       }
     }
   }
+  li:hover,
+  li:focus {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 
   @media screen and (min-width: 480px) {
     grid-template-columns: repeat(2, 200px);
