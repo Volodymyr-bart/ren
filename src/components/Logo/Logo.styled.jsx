@@ -8,8 +8,6 @@ export const StyledLogo = styled.div`
   height: 104px;
   background-repeat: no-repeat;
   background-size: contain;
-  /* width: fit-content; */
-  /* height: auto; */
   background-image: url(${Rick_Morty_1});
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
