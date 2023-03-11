@@ -19,7 +19,7 @@ function GooglePanel() {
 
   useEffect(() => {
     setIsLoad(false);
-    if (user?.access_token) {
+    if (user) {
       axios
         .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
           headers: {
