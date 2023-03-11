@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { Item, PaginationList } from "./Pagination.styled";
 
 const Pagination = ({ pages, paginate, currentPage }) => {
@@ -7,22 +6,11 @@ const Pagination = ({ pages, paginate, currentPage }) => {
     for (let i = 1; i <= pages; i++) {
       pageNumbers.push(i);
     }
-    // if (pages < 10) {
-    //   for (let i = 1; i <= pages; i++) {
-    //     pageNumbers.push(i);
-    //   }
-    // }
-    // if (pages > 10) {
-    //    pageNumbers = [];
-    //   // for (let i = 1; i <= pages; i++) {
-    //   //   pageNumbers.push(i);
-    //   // }
-    // }
   }
 
   return (
     <>
-      {pageNumbers && (
+      {pages ? (
         <PaginationList>
           {pageNumbers.map((number) => (
             <Item
@@ -33,6 +21,8 @@ const Pagination = ({ pages, paginate, currentPage }) => {
             </Item>
           ))}
         </PaginationList>
+      ) : (
+        <></>
       )}
     </>
   );

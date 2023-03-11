@@ -17,11 +17,12 @@ const Home = () => {
   let visibleItems = [];
   if (items) {
     visibleItems = items
-      .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+      .filter((item) => item.name.toLowerCase().includes(search.trim().toLowerCase()))
       .sort((firstItem, secondItem) => firstItem.name.localeCompare(secondItem.name));
   }
 
   useEffect(() => {
+    setErrors(false);
     const templatePage = `${currentPage ? `page=${currentPage}` : ""}`;
     const templateName = `${search ? `name=${search}` : ""}`;
     const symbol = templatePage || templateName ? "?" : "";
@@ -30,31 +31,24 @@ const Home = () => {
       .then((response) => response.json())
       .then((posts) => {
         if (posts) {
-          console.log("posts", posts);
           const { results, info, error } = posts;
-          if (info === "undefined") {
+          if (error) {
+            setErrors(error);
             setPages(0);
           }
-          console.log(error);
-          // console.log(info.pages);
-          console.log(info);
-          // setPages(info?.pages ? info.pages : "Undefind");
           setPages(info.pages);
           setItems(results);
-          console.log(results);
         }
       })
-      .catch((error) => setErrors(error.message));
+      .catch((error) => console.log(error.message));
   }, [search, currentPage]);
-
-  // console.log("errors", errors);
 
   return (
     <>
       <Logo />
       <SearchBox value={search} onChange={setSearch} />
-      <List items={visibleItems} />
-      {pages && <Pagination pages={pages} currentPage={currentPage} paginate={paginate} />}
+      {errors ? <div>{errors}</div> : <List items={visibleItems} />}
+      <Pagination pages={pages} currentPage={currentPage} paginate={paginate} />
     </>
   );
 };
