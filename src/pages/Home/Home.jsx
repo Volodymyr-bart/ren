@@ -5,6 +5,7 @@ import Logo from "../../components/Logo/Logo";
 import Pagination from "../../components/Pagination/Pagination";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import GooglePanel from "../../components/GoogleAuth/GoogleAuth";
 const URL = "https://rickandmortyapi.com/api/character";
 
 const Home = () => {
@@ -51,6 +52,7 @@ const Home = () => {
 
   return (
     <>
+      <GooglePanel />
       <Logo />
       <SearchBox value={search} onChange={setSearch} />
       {errors ? <div>{errors}</div> : <List items={visibleItems} />}
