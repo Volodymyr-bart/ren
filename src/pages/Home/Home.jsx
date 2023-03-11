@@ -5,12 +5,14 @@ import Logo from "../../components/Logo/Logo";
 import Pagination from "../../components/Pagination/Pagination";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+const URL = "https://rickandmortyapi.com/api/character";
 
 const Home = () => {
   const [items, setItems] = useState([]);
   const [search, setSearch] = useLocalStorage("search", "");
   const [pages, setPages] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const [errors, setErrors] = useState(false);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   let visibleItems = [];
   if (items) {
@@ -20,28 +22,39 @@ const Home = () => {
   }
 
   useEffect(() => {
-    const templatePage = `${currentPage ? `page=${currentPage}` : ``}`;
-    const templateName = `${search ? `name=${search}` : ``}`;
+    const templatePage = `${currentPage ? `page=${currentPage}` : ""}`;
+    const templateName = `${search ? `name=${search}` : ""}`;
     const symbol = templatePage || templateName ? "?" : "";
     const and = templatePage || templateName ? "&" : "";
-    fetch(`https://rickandmortyapi.com/api/character${symbol}${templateName}${and}${templatePage}`)
+    fetch(`${URL}${symbol}${templateName}${and}${templatePage}`)
       .then((response) => response.json())
       .then((posts) => {
         if (posts) {
-          const { results, info } = posts;
+          console.log("posts", posts);
+          const { results, info, error } = posts;
+          if (info === "undefined") {
+            setPages(0);
+          }
+          console.log(error);
+          // console.log(info.pages);
+          console.log(info);
+          // setPages(info?.pages ? info.pages : "Undefind");
           setPages(info.pages);
           setItems(results);
+          console.log(results);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrors(error.message));
   }, [search, currentPage]);
+
+  // console.log("errors", errors);
 
   return (
     <>
       <Logo />
       <SearchBox value={search} onChange={setSearch} />
       <List items={visibleItems} />
-      <Pagination pages={pages} currentPage={currentPage} paginate={paginate} />
+      {pages && <Pagination pages={pages} currentPage={currentPage} paginate={paginate} />}
     </>
   );
 };

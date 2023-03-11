@@ -31,7 +31,7 @@ export const StyledList = styled.ul`
         p {
           font-weight: 400;
           font-size: 14px;
-          line-height: 21px;
+          line-height: 1.5;
           letter-spacing: 0.25px;
           color: rgba(0, 0, 0, 0.6);
         }

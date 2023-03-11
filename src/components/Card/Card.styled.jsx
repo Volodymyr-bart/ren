@@ -1,20 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const GoBackLink = styled(Link)`
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  display: flex;
-  gap: 12px;
-  color: #000000;
-  align-items: center;
-  @media screen and (min-width: 1200px) {
-    left: 50px;
-  }
-`;
-
-export const Card = styled.div`
+export const CardStyled = styled.div`
   margin: 124px auto 0;
   padding-bottom: 24px;
 
@@ -34,7 +20,7 @@ export const Card = styled.div`
 
     font-weight: 400;
     font-size: 32px;
-    line-height: 38px;
+    line-height: 1.19;
 
     color: #081f32;
     text-align: center;
@@ -45,7 +31,7 @@ export const Card = styled.div`
     text-align: start;
     font-weight: 500;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 1.2;
     letter-spacing: 0.15px;
 
     color: #8e8e93;
@@ -96,7 +82,7 @@ export const Card = styled.div`
       margin-top: 16px;
 
       font-size: 48px;
-      line-height: 56px;
+      line-height: 1.17;
     }
     p {
       margin-top: 48px;
