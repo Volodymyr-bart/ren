@@ -48,8 +48,10 @@ export const StyledList = styled.ul`
     grid-template-columns: repeat(2, 200px);
     column-gap: 20px;
     li {
-      img {
-        height: 168px;
+      a {
+        img {
+          height: 168px;
+        }
       }
     }
   }
